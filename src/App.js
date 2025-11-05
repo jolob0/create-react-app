@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { ChevronRight, Zap, Trophy, TrendingUp, Cpu } from 'lucide-react';
+//import { ChevronRight, Zap, Trophy, TrendingUp, Cpu } from 'lucide-react';
 
 // The base URL for the ESPN API endpoint (used by the ranking/modal feature for LIVE data)
 const API_URL = 'https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard';
