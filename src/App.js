@@ -211,6 +211,7 @@ const App = () => {
             
             competitors.forEach(comp => {
                 const teamName = comp.team?.displayName || comp.team?.shortDisplayName || comp.team?.abbreviation || 'Unknown Team';
+                const teamNameAbr = comp.team?.abbreviation;
                 const teamLogo = comp.team?.logos?.[0]?.href || ''; 
                 const teamId = comp.team?.id;
                 
@@ -250,9 +251,9 @@ const App = () => {
                 // --- END SCORE EXTRACTION ---
                 
                 if (comp.homeAway === 'home') {
-                    homeData = { teamName, score, teamLogo, teamRecord, debugRecordUrl, teamOdds }; 
+                    homeData = { teamName, score, teamLogo, teamRecord, debugRecordUrl, teamOdds, teamNameAbr }; 
                 } else if (comp.homeAway === 'away') {
-                    awayData = { teamName, score, teamLogo, teamRecord, debugRecordUrl, teamOdds }; 
+                    awayData = { teamName, score, teamLogo, teamRecord, debugRecordUrl, teamOdds, teamNameAbr }; 
                 }
             });
 
@@ -308,6 +309,8 @@ const App = () => {
                 name: gameName, 
                 homeTeam: homeData.teamName, 
                 awayTeam: awayData.teamName,
+                homeTeamAbr: homeData.teamNameAbr, 
+                awayTeamAbr: awayData.teamNameAbr,
                 homeLogo: homeData.teamLogo, 
                 awayLogo: awayData.teamLogo, 
                 homeRecord: homeData.teamRecord || 'N/A', 
@@ -643,18 +646,18 @@ const App = () => {
                          // Logic copied from transformEvents to determine winner/line
                          if (awayOddsNum < 0 || homeOddsNum < 0) {
                             if (awayOddsNum < homeOddsNum) {
-                                expectedWinner = game.awayTeam;
+                                expectedWinner = game.awayTeamAbr;
                                 winnerLine = awayOddsNum;
                             } else {
-                                expectedWinner = game.homeTeam;
+                                expectedWinner = game.homeTeamAbr;
                                 winnerLine = homeOddsNum;
                             }
                          } else if (awayOddsNum > 0 && homeOddsNum > 0) {
                             if (awayOddsNum < homeOddsNum) {
-                                expectedWinner = game.awayTeam;
+                                expectedWinner = game.awayTeamAbr;
                                 winnerLine = awayOddsNum;
                             } else {
-                                expectedWinner = game.homeTeam;
+                                expectedWinner = game.homeTeamAbr;
                                 winnerLine = homeOddsNum;
                             }
                          }
@@ -664,8 +667,8 @@ const App = () => {
 
                     return {
                         id: `${game.awayTeam}-${game.homeTeam}`, // Create a unique ID
-                        awayTeam: game.awayTeam,
-                        homeTeam: game.homeTeam,
+                        awayTeam: game.awayTeamAbr,
+                        homeTeam: game.homeTeamAbr,
                         awayOdds: game.awayOdds,
                         homeOdds: game.homeOdds,
                         expectedWinner: expectedWinner,
@@ -778,7 +781,7 @@ const App = () => {
 
         const modalTitle = year && week ? 
             `Confidence Rank for ${year} Week ${week}` : 
-            "Live/Current NFL Game Predictions & Confidence Rank";
+            "Confidence Rank for This Week";
 
         return (
           <div 
@@ -793,10 +796,6 @@ const App = () => {
                 <Trophy className="w-6 h-6 mr-2 text-green-600" />
                 {modalTitle}
               </h2>
-              
-              <p className="text-sm text-gray-600 mb-4">
-                **Confidence Rank** is reversed: **{maxRank}** = Strongest Favorite, **1** = Weakest Favorite.
-              </p>
 
               {networkError ? (
                 <div className="text-center p-6 bg-red-100 border-l-4 border-red-500 text-red-700 rounded-lg">
