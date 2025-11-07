@@ -1131,7 +1131,7 @@ const App = () => {
                                                         <span className="opacity-80">ML:</span> 
                                                         <span>{game.awayOdds || 'N/A'}</span>
                                                     </div>
-                                                /*</div>*/
+                                                </div>
 
                                                 {/* OLD ODDS BOX (Desktop position - Hidden on Mobile, Visible on Desktop) */}
                                                 <div className="hidden sm:flex absolute top-0 right-0 p-1 bg-indigo-600 text-white text-xs font-bold rounded-tr-xl rounded-bl-lg shadow-md items-center space-x-1">
