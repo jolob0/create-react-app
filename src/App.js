@@ -881,7 +881,7 @@ const App = () => {
                             return (
                                 <div 
                                     key={event.id} 
-                                    className="p-4 bg-white rounded-xl shadow-lg border border-gray-200 flex items-center justify-between transition duration-150"
+                                    className="p-3 bg-white rounded-xl shadow-lg border border-gray-200 flex items-center justify-between transition duration-150"
                                 >
                                     {/* Left Side: Matchup and Odds */}
                                     <div className="flex-1 min-w-0 pr-3">
