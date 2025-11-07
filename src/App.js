@@ -888,16 +888,17 @@ const App = () => {
                                         {/* Matchup Line */}
                                         <div className="flex items-center text-sm font-bold text-gray-900 truncate">
                                             <span className={isAwayWinner ? 'text-indigo-700' : 'text-gray-800'}>{event.awayTeam}</span>
-                                            <span className="mx-1 font-normal text-gray-500">at</span>
+                                            <span className="mx-1 font-normal text-gray-500">@</span>
                                             <span className={isHomeWinner ? 'text-indigo-700' : 'text-gray-800'}>{event.homeTeam}</span>
-                                        </div>
-                                        
-                                        {/* Winner and Odds */}
-                                        <div className="text-xs mt-1 text-gray-600">
                                             <span className="font-semibold">Winner:</span> 
                                             <span className={`ml-1 font-bold ${isAwayWinner || isHomeWinner ? 'text-indigo-600' : 'text-gray-500'}`}>
                                                 {event.expectedWinner}
                                             </span>
+                                        </div>
+                                        
+                                        {/* Winner and Odds */}
+                                        <div className="text-xs mt-1 text-gray-600">
+                                            
                                             <span className="ml-2">({event.awayOdds} | {event.homeOdds})</span>
                                         </div>
                                     </div>
