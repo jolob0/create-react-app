@@ -1002,7 +1002,7 @@ const App = () => {
                             // Display currentYear as the default visually, but keep state null if not selected
                             value={year === null ? currentYear : year} 
                             onChange={(e) => setYear(Number(e.target.value))}
-                            className="p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                            className="p-2 border border-gray-300 text-gray-700 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                         >
                             {/* Generates options for current year and 2 years prior */}
                             {Array.from({ length: 3 }, (_, i) => currentYear - i).map(y => (
@@ -1017,7 +1017,7 @@ const App = () => {
                             id="week-select"
                             value={week === null ? '' : week}
                             onChange={(e) => setWeek(Number(e.target.value))}
-                            className="p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                            className="p-2 border border-gray-300 text-gray-700 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                         >
                             <option value="" disabled>Select Week</option>
                             {/* Generates options for Week 1 through 18 */}
