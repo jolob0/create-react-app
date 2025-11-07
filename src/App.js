@@ -1105,7 +1105,7 @@ const App = () => {
                                                             {/* Full Name on Desktop, Hidden on Mobile */}
                                                             <span className="hidden sm:inline text-lg font-bold">{game.awayTeam}</span>
                                                             {/* Inline content for mobile: Name (Abr) + Record + Score */}
-                                                            <span className="inline sm:hidden text-sm font-bold text-gray-700">
+                                                            <span className="inline sm:hidden text-xs font-bold text-gray-700">
                                                                 ({game.awayRecord})
                                                             </span>
                                                         </div>
@@ -1124,7 +1124,7 @@ const App = () => {
 
 
                                                 {/* NEW ODDS BOX (Bottom position - Visible on Mobile, Hidden on Desktop) */}
-                                                <div className="sm:hidden absolute bottom-0 right-0 mt-2 pt-5 flex justify-end">
+                                                <div className="sm:hidden absolute bottom-0 right-0 mt-5 pt-5 flex justify-end">
                                                     <div className="p-1 px-2 bg-indigo-600 text-white text-xs font-bold rounded-lg shadow-md flex items-center space-x-1">
                                                         <span className="uppercase font-extrabold px-1 bg-white text-indigo-600 rounded-sm">AWAY</span>
                                                         <span className="opacity-80">ML:</span> 
@@ -1164,7 +1164,7 @@ const App = () => {
                                                             {/* Full Name on Desktop, Hidden on Mobile */}
                                                             <span className="hidden sm:inline text-lg font-bold">{game.homeTeam}</span>
                                                             {/* Inline content for mobile: Name (Abr) + Record + Score */}
-                                                            <span className="inline sm:hidden text-sm font-bold text-gray-700">
+                                                            <span className="inline sm:hidden text-xs font-bold text-gray-700">
                                                                 ({game.homeRecord})
                                                             </span>
                                                         </div>
@@ -1183,7 +1183,7 @@ const App = () => {
 
 
                                                 {/* NEW ODDS BOX (Bottom position - Visible on Mobile, Hidden on Desktop) */}
-                                                <div className="sm:hidden absolute bottom-0 right-0 mt-2 pt-5 flex justify-end">
+                                                <div className="sm:hidden absolute bottom-0 right-0 mt-5 pt-5 flex justify-end">
                                                     <div className="p-1 px-2 bg-indigo-600 text-white text-xs font-bold rounded-lg shadow-md flex items-center space-x-1">
                                                         <span className="uppercase font-extrabold px-1 bg-white text-indigo-600 rounded-sm">HOME</span>
                                                         <span className="opacity-80">ML:</span> 
