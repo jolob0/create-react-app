@@ -907,7 +907,6 @@ const App = () => {
                                         <div className={`w-12 h-12 flex items-center justify-center rounded-full font-extrabold text-lg ${rankClasses}`}>
                                             {event.confidenceRank}
                                         </div>
-                                        <div className="text-xs text-center text-gray-500 mt-1">Rank</div>
                                     </div>
                                 </div>
                             );
