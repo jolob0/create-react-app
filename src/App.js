@@ -890,7 +890,7 @@ const App = () => {
                                             <span className={isAwayWinner ? 'text-indigo-700' : 'text-gray-800'}>{event.awayTeam}</span>
                                             <span className="mx-1 font-normal text-gray-500">@</span>
                                             <span className={isHomeWinner ? 'text-indigo-700' : 'text-gray-800'}>{event.homeTeam}</span>
-                                            <span className="font-semibold">Winner:</span> 
+                                            <span className="font-semibold text-gray-800">Winner:</span> 
                                             <span className={`ml-1 font-bold ${isAwayWinner || isHomeWinner ? 'text-indigo-600' : 'text-gray-500'}`}>
                                                 {event.expectedWinner}
                                             </span>
