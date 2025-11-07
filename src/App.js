@@ -1165,7 +1165,7 @@ const App = () => {
                                                             <span className="hidden sm:inline text-lg font-bold">{game.homeTeam}</span>
                                                             {/* Inline content for mobile: Name (Abr) + Record + Score */}
                                                             <span className="inline sm:hidden text-sm font-bold text-gray-700">
-                                                                {game.homeTeamAbr} ({game.homeRecord})
+                                                                ({game.homeRecord})
                                                             </span>
                                                         </div>
                                                     </div>
