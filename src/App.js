@@ -780,8 +780,8 @@ const App = () => {
         const maxRank = events.length;
 
         const modalTitle = year && week ? 
-            `Confidence Rank for ${year} Week ${week}` : 
-            "Confidence Rank for This Week";
+            `Picks for ${year} Week ${week}` : 
+            "Picks for This Week";
 
         return (
           <div 
