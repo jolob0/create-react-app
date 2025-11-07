@@ -1098,15 +1098,14 @@ const App = () => {
                                                         <img 
                                                             src={game.awayLogo} 
                                                             alt={`${game.awayTeam} Logo`} 
-                                                            className="w-7 h-7 object-contain mt-1"
+                                                            className="w-10 h-10 sm:w-7 sm:h-7 object-contain mt-1" // **RESPONSIVE SIZE**
                                                             onError={(e) => { e.target.onerror = null; e.target.src = fallbackLogo(game.awayTeam); }}
                                                         />
                                                     )}
                                                     <div className="flex-1 flex flex-col">
                                                         {/* Row 1: Team Name + Score (Justified) */}
                                                         <div className="flex justify-between items-center">
-                                                            <span className="text-lg font-bold">{game.awayTeam}</span>
-                                                            {/* SCORE DISPLAY (Primary) */}
+                                                            <span className="hidden sm:inline text-lg font-bold">{game.awayTeam}</span> {/* **HIDDEN ON MOBILE** */}
                                                             <span className={`text-3xl font-extrabold ${getScoreClasses(game.awayStatus)}`}>
                                                                 {game.awayScore}
                                                             </span>
@@ -1137,15 +1136,14 @@ const App = () => {
                                                         <img 
                                                             src={game.homeLogo} 
                                                             alt={`${game.homeTeam} Logo`} 
-                                                            className="w-7 h-7 object-contain mt-1"
+                                                            className="w-10 h-10 sm:w-7 sm:h-7 object-contain mt-1" // **RESPONSIVE SIZE**
                                                             onError={(e) => { e.target.onerror = null; e.target.src = fallbackLogo(game.homeTeam); }}
                                                         />
                                                     )}
                                                     <div className="flex-1 flex flex-col">
                                                         {/* Row 1: Team Name + Score (Justified) */}
                                                         <div className="flex justify-between items-center">
-                                                            <span className="text-lg font-bold">{game.homeTeam}</span>
-                                                            {/* SCORE DISPLAY (Primary) */}
+                                                            <span className="hidden sm:inline text-lg font-bold">{game.homeTeam}</span> {/* **HIDDEN ON MOBILE** */}
                                                             <span className={`text-3xl font-extrabold ${getScoreClasses(game.homeStatus)}`}>
                                                                 {game.homeScore}
                                                             </span>
