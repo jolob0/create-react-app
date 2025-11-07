@@ -143,6 +143,7 @@ const App = () => {
         const extractedGames = [];
 
         events.forEach(event => {
+            // FIX: Access competition reliably from event
             const competition = event.competitions && event.competitions.length > 0 ? event.competitions[0] : null;
 
             if (!competition) return;
@@ -415,6 +416,8 @@ const App = () => {
 
                     // --- PHASE 2: L4 Record, Score, Odds, and Status Fetch (Guaranteed to have Team ID now) ---
                     const finalPatchPromises = events.flatMap(event => {
+                        if (!event.competitions || event.competitions.length === 0) return [];
+
                         const competition = event.competitions[0];
                         const eventPromises = [];
                         
@@ -1081,78 +1084,119 @@ const App = () => {
                                             {/* Away Team Block */}
                                             <div className={`p-3 rounded-xl flex flex-col space-y-1 shadow-inner transition duration-150 relative ${awayClasses}`}>
                                                 
-                                                {/* ODDS DISPLAY (Top Right) */}
-                                                <div className="absolute top-0 right-0 p-1 bg-indigo-600 text-white text-xs font-bold rounded-tr-xl rounded-bl-lg shadow-md flex items-center space-x-1">
-                                                    <span className="uppercase font-extrabold px-1 bg-white text-indigo-600 rounded-sm">AWAY</span>
-                                                    <span className="opacity-80">ML:</span> 
-                                                    <span>{game.awayOdds || 'N/A'}</span>
-                                                </div>
-
+                                                {/* Team Status (Stays at top) */}
                                                 <span className="font-semibold uppercase tracking-wider text-xs text-gray-600">
                                                     {getStatusLabel(game.awayStatus)}
                                                 </span>
 
-                                                {/* UPDATED STRUCTURE: Score inline with Team Name */}
-                                                <div className="flex items-start space-x-2 mt-1">
-                                                    {game.awayLogo && (
-                                                        <img 
-                                                            src={game.awayLogo} 
-                                                            alt={`${game.awayTeam} Logo`} 
-                                                            className="w-10 h-10 sm:w-7 sm:h-7 object-contain mt-1" // **RESPONSIVE SIZE**
-                                                            onError={(e) => { e.target.onerror = null; e.target.src = fallbackLogo(game.awayTeam); }}
-                                                        />
-                                                    )}
-                                                    <div className="flex-1 flex flex-col">
-                                                        {/* Row 1: Team Name + Score (Justified) */}
-                                                        <div className="flex justify-between items-center">
-                                                            <span className="hidden sm:inline text-lg font-bold">{game.awayTeam}</span> {/* **HIDDEN ON MOBILE** */}
-                                                            <span className={`text-3xl font-extrabold ${getScoreClasses(game.awayStatus)}`}>
-                                                                {game.awayScore}
+                                                {/* MAIN CONTENT LINE: Logo | Name (Desktop) / Record (Mobile) | Score */}
+                                                <div className="flex items-center justify-between mt-1">
+                                                    {/* Left Group: Logo + Name/Record */}
+                                                    <div className="flex items-center space-x-2">
+                                                        {game.awayLogo && (
+                                                            <img 
+                                                                src={game.awayLogo} 
+                                                                alt={`${game.awayTeam} Logo`} 
+                                                                className="w-10 h-10 sm:w-7 sm:h-7 object-contain"
+                                                                onError={(e) => { e.target.onerror = null; e.target.src = fallbackLogo(game.awayTeam); }}
+                                                            />
+                                                        )}
+                                                        <div className="flex flex-col">
+                                                            {/* Full Name on Desktop, Hidden on Mobile */}
+                                                            <span className="hidden sm:inline text-lg font-bold">{game.awayTeam}</span>
+                                                            {/* Inline content for mobile: Name (Abr) + Record + Score */}
+                                                            <span className="inline sm:hidden text-sm font-bold text-gray-700">
+                                                                {game.awayTeamAbr} ({game.awayRecord})
                                                             </span>
                                                         </div>
-                                                        {/* Row 2: Record */}
-                                                        <span className="text-xs font-medium text-gray-700 mt-0.5">{game.awayRecord}</span>
                                                     </div>
+
+                                                    {/* Right Group: Score */}
+                                                    <span className={`text-3xl font-extrabold ${getScoreClasses(game.awayStatus)}`}>
+                                                        {game.awayScore}
+                                                    </span>
+                                                </div>
+                                                
+                                                {/* Record on Desktop Only */}
+                                                <span className="hidden sm:block text-xs font-medium text-gray-700 mt-0.5">
+                                                    {game.awayRecord}
+                                                </span>
+
+
+                                                {/* NEW ODDS BOX (Bottom position - Visible on Mobile, Hidden on Desktop) */}
+                                                <div className="sm:hidden mt-2 pt-2 border-t border-gray-300 flex justify-end">
+                                                    <div className="p-1 px-2 bg-indigo-600 text-white text-xs font-bold rounded-lg shadow-md flex items-center space-x-1">
+                                                        <span className="uppercase font-extrabold px-1 bg-white text-indigo-600 rounded-sm">AWAY</span>
+                                                        <span className="opacity-80">ML:</span> 
+                                                        <span>{game.awayOdds || 'N/A'}</span>
+                                                    </div>
+                                                </div>
+
+                                                {/* OLD ODDS BOX (Desktop position - Hidden on Mobile, Visible on Desktop) */}
+                                                <div className="hidden sm:flex absolute top-0 right-0 p-1 bg-indigo-600 text-white text-xs font-bold rounded-tr-xl rounded-bl-lg shadow-md items-center space-x-1">
+                                                    <span className="uppercase font-extrabold px-1 bg-white text-indigo-600 rounded-sm">AWAY</span>
+                                                    <span className="opacity-80">ML:</span> 
+                                                    <span>{game.awayOdds || 'N/A'}</span>
                                                 </div>
                                             </div>
                                             
                                             {/* Home Team Block */}
                                             <div className={`p-3 rounded-xl flex flex-col space-y-1 shadow-inner transition duration-150 relative ${homeClasses}`}>
                                                 
-                                                {/* ODDS DISPLAY (Top Right) */}
-                                                <div className="absolute top-0 right-0 p-1 bg-indigo-600 text-white text-xs font-bold rounded-tr-xl rounded-bl-lg shadow-md flex items-center space-x-1">
-                                                    <span className="uppercase font-extrabold px-1 bg-white text-indigo-600 rounded-sm">HOME</span>
-                                                    <span className="opacity-80">ML:</span> 
-                                                    <span>{game.homeOdds || 'N/A'}</span>
-                                                </div>
-                                                
+                                                {/* Team Status (Stays at top) */}
                                                 <span className="font-semibold uppercase tracking-wider text-xs text-gray-600">
                                                     {getStatusLabel(game.homeStatus)}
                                                 </span>
                                                 
-                                                {/* UPDATED STRUCTURE: Score inline with Team Name */}
-                                                <div className="flex items-start space-x-2 mt-1">
-                                                    {game.homeLogo && (
-                                                        <img 
-                                                            src={game.homeLogo} 
-                                                            alt={`${game.homeTeam} Logo`} 
-                                                            className="w-10 h-10 sm:w-7 sm:h-7 object-contain mt-1" // **RESPONSIVE SIZE**
-                                                            onError={(e) => { e.target.onerror = null; e.target.src = fallbackLogo(game.homeTeam); }}
-                                                        />
-                                                    )}
-                                                    <div className="flex-1 flex flex-col">
-                                                        {/* Row 1: Team Name + Score (Justified) */}
-                                                        <div className="flex justify-between items-center">
-                                                            <span className="hidden sm:inline text-lg font-bold">{game.homeTeam}</span> {/* **HIDDEN ON MOBILE** */}
-                                                            <span className={`text-3xl font-extrabold ${getScoreClasses(game.homeStatus)}`}>
-                                                                {game.homeScore}
+                                                {/* MAIN CONTENT LINE: Logo | Name (Desktop) / Record (Mobile) | Score */}
+                                                <div className="flex items-center justify-between mt-1">
+                                                    {/* Left Group: Logo + Name/Record */}
+                                                    <div className="flex items-center space-x-2">
+                                                        {game.homeLogo && (
+                                                            <img 
+                                                                src={game.homeLogo} 
+                                                                alt={`${game.homeTeam} Logo`} 
+                                                                className="w-10 h-10 sm:w-7 sm:h-7 object-contain"
+                                                                onError={(e) => { e.target.onerror = null; e.target.src = fallbackLogo(game.homeTeam); }}
+                                                            />
+                                                        )}
+                                                        <div className="flex flex-col">
+                                                            {/* Full Name on Desktop, Hidden on Mobile */}
+                                                            <span className="hidden sm:inline text-lg font-bold">{game.homeTeam}</span>
+                                                            {/* Inline content for mobile: Name (Abr) + Record + Score */}
+                                                            <span className="inline sm:hidden text-sm font-bold text-gray-700">
+                                                                {game.homeTeamAbr} ({game.homeRecord})
                                                             </span>
                                                         </div>
-                                                        {/* Row 2: Record */}
-                                                        <span className="text-xs font-medium text-gray-700 mt-0.5">{game.homeRecord}</span>
+                                                    </div>
+
+                                                    {/* Right Group: Score */}
+                                                    <span className={`text-3xl font-extrabold ${getScoreClasses(game.homeStatus)}`}>
+                                                        {game.homeScore}
+                                                    </span>
+                                                </div>
+
+                                                {/* Record on Desktop Only */}
+                                                <span className="hidden sm:block text-xs font-medium text-gray-700 mt-0.5">
+                                                    {game.homeRecord}
+                                                </span>
+
+
+                                                {/* NEW ODDS BOX (Bottom position - Visible on Mobile, Hidden on Desktop) */}
+                                                <div className="sm:hidden mt-2 pt-2 border-t border-gray-300 flex justify-end">
+                                                    <div className="p-1 px-2 bg-indigo-600 text-white text-xs font-bold rounded-lg shadow-md flex items-center space-x-1">
+                                                        <span className="uppercase font-extrabold px-1 bg-white text-indigo-600 rounded-sm">HOME</span>
+                                                        <span className="opacity-80">ML:</span> 
+                                                        <span>{game.homeOdds || 'N/A'}</span>
                                                     </div>
                                                 </div>
 
+                                                {/* OLD ODDS BOX (Desktop position - Hidden on Mobile, Visible on Desktop) */}
+                                                <div className="hidden sm:flex absolute top-0 right-0 p-1 bg-indigo-600 text-white text-xs font-bold rounded-tr-xl rounded-bl-lg shadow-md items-center space-x-1">
+                                                    <span className="uppercase font-extrabold px-1 bg-white text-indigo-600 rounded-sm">HOME</span>
+                                                    <span className="opacity-80">ML:</span> 
+                                                    <span>{game.homeOdds || 'N/A'}</span>
+                                                </div>
                                             </div>
                                         </div>
                                         
