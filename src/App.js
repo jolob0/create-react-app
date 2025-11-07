@@ -1124,7 +1124,7 @@ const App = () => {
 
 
                                                 {/* NEW ODDS BOX (Bottom position - Visible on Mobile, Hidden on Desktop) */}
-                                                <div className="sm:hidden flex bottom-0 right-0 justify-end">
+                                                <div className="sm:hidden flex">
                                                     <div className="flex bottom-0 right-0 p-1 px-2 bg-indigo-600 text-white text-xs font-bold rounded-lg shadow-md flex items-center space-x-1">
                                                         <span className="uppercase font-extrabold px-1 bg-white text-indigo-600 rounded-sm">AWAY</span>
                                                         <span className="opacity-80">ML:</span> 
