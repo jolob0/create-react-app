@@ -773,7 +773,7 @@ const App = () => {
     };
 
 
-    // --- Modal Component (FOR RANKING UI) ---
+        // --- Modal Component (FOR RANKING UI) ---
     const EventModal = () => {
         if (!modalOpen) return null;
 
@@ -804,63 +804,116 @@ const App = () => {
                   <p className="text-xs mt-2 italic">Please check your network environment or try a different week/year selection.</p>
                 </div>
               ) : events.length > 0 ? (
-                // New Table UI
-                <div className="overflow-x-auto rounded-xl shadow-lg border border-gray-200">
-                  <table className="min-w-full divide-y divide-gray-200">
-                    {/* Table Headers */}
-                    <thead className="bg-indigo-600/95 text-white">
-                      <tr>
-                        <th className="px-3 py-3 text-center text-xs font-bold uppercase tracking-wider rounded-tl-xl">
-                          Away Team (Odds)
-                        </th>
-                        <th className="px-3 py-3 text-center text-xs font-bold uppercase tracking-wider">
-                          Home Team (Odds)
-                        </th>
-                        <th className="px-3 py-3 text-center text-xs font-bold uppercase tracking-wider">
-                          Expected Winner
-                        </th>
-                        <th className="px-3 py-3 text-center text-xs font-bold uppercase tracking-wider rounded-tr-xl">
-                          Confidence Rank
-                        </th>
-                      </tr>
-                    </thead>
-                    {/* Table Body */}
-                    <tbody className="bg-white divide-y divide-gray-200">
-                      {events.map((event) => (
-                        <tr key={event.id} className="hover:bg-indigo-50/50 transition duration-150">
-                          <td className="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
-                            <span className="font-bold text-base">{event.awayTeam}</span> 
-                            <span className="text-xs ml-1 text-gray-500">({event.awayOdds || 'N/A'})</span>
-                          </td>
-                          <td className="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
-                            <span className="font-bold text-base">{event.homeTeam}</span> 
-                            <span className="text-xs ml-1 text-gray-500">({event.homeOdds || 'N/A'})</span>
-                          </td>
-                          <td className="px-3 py-3 whitespace-nowrap text-sm text-center">
-                            <span className={`px-3 py-1 rounded-full text-xs font-bold ${
-                              event.expectedWinner === event.awayTeam 
-                                ? 'bg-red-100 text-red-800' // Highlight Away winner
-                                : event.expectedWinner === event.homeTeam
-                                ? 'bg-indigo-100 text-indigo-800' // Highlight Home winner
-                                : 'bg-gray-100 text-gray-800'
-                            }`}>
-                              {event.expectedWinner}
-                            </span>
-                          </td>
-                          <td className="px-3 py-3 whitespace-nowrap text-sm text-center">
-                              <span className={`px-4 py-1 rounded-full text-sm font-extrabold ${
-                                event.confidenceRank === maxRank ? 'bg-green-600 text-white shadow-lg' :
+                <>
+                    {/* ----------------------------------------------------- */}
+                    {/* TABLE UI (Desktop/Tablet View) */}
+                    {/* ----------------------------------------------------- */}
+                    <div className="hidden sm:block overflow-x-auto rounded-xl shadow-lg border border-gray-200">
+                      <table className="min-w-full divide-y divide-gray-200">
+                        {/* Table Headers */}
+                        <thead className="bg-indigo-600/95 text-white">
+                          <tr>
+                            <th className="px-3 py-3 text-center text-xs font-bold uppercase tracking-wider rounded-tl-xl">
+                              Away Team (Odds)
+                            </th>
+                            <th className="px-3 py-3 text-center text-xs font-bold uppercase tracking-wider">
+                              Home Team (Odds)
+                            </th>
+                            <th className="px-3 py-3 text-center text-xs font-bold uppercase tracking-wider">
+                              Expected Winner
+                            </th>
+                            <th className="px-3 py-3 text-center text-xs font-bold uppercase tracking-wider rounded-tr-xl">
+                              Confidence Rank
+                            </th>
+                          </tr>
+                        </thead>
+                        {/* Table Body (Desktop) */}
+                        <tbody className="bg-white divide-y divide-gray-200">
+                          {events.map((event) => {
+                              const rankClasses = event.confidenceRank === maxRank ? 'bg-green-600 text-white shadow-lg' :
                                 event.confidenceRank >= maxRank - 2 ? 'bg-green-100 text-green-700' :
-                                'bg-gray-200 text-gray-700'
-                              }`}>
-                                  {event.confidenceRank}
-                              </span>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+                                'bg-gray-200 text-gray-700';
+
+                              return (
+                                <tr key={event.id} className="hover:bg-indigo-50/50 transition duration-150">
+                                  <td className="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
+                                    <span className="font-bold text-base">{event.awayTeam}</span> 
+                                    <span className="text-xs ml-1 text-gray-500">({event.awayOdds || 'N/A'})</span>
+                                  </td>
+                                  <td className="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
+                                    <span className="font-bold text-base">{event.homeTeam}</span> 
+                                    <span className="text-xs ml-1 text-gray-500">({event.homeOdds || 'N/A'})</span>
+                                  </td>
+                                  <td className="px-3 py-3 whitespace-nowrap text-sm text-center">
+                                    <span className={`px-3 py-1 rounded-full text-xs font-bold ${
+                                      event.expectedWinner === event.awayTeam 
+                                        ? 'bg-red-100 text-red-800' // Highlight Away winner
+                                        : event.expectedWinner === event.homeTeam
+                                        ? 'bg-indigo-100 text-indigo-800' // Highlight Home winner
+                                        : 'bg-gray-100 text-gray-800'
+                                    }`}>
+                                      {event.expectedWinner}
+                                    </span>
+                                  </td>
+                                  <td className="px-3 py-3 whitespace-nowrap text-sm text-center">
+                                      <span className={`px-4 py-1 rounded-full text-sm font-extrabold ${rankClasses}`}>
+                                          {event.confidenceRank}
+                                      </span>
+                                  </td>
+                                </tr>
+                            );})}
+                        </tbody>
+                      </table>
+                    </div>
+                    
+                    {/* ----------------------------------------------------- */}
+                    {/* CARD UI (Mobile View) */}
+                    {/* ----------------------------------------------------- */}
+                    <div className="sm:hidden space-y-3">
+                        {events.map((event) => {
+                            const isAwayWinner = event.expectedWinner === event.awayTeam;
+                            const isHomeWinner = event.expectedWinner === event.homeTeam;
+                            
+                            const rankClasses = event.confidenceRank === maxRank ? 'bg-green-600 text-white shadow-xl' :
+                                event.confidenceRank >= maxRank - 2 ? 'bg-green-500 text-white' :
+                                'bg-gray-300 text-gray-800';
+
+                            return (
+                                <div 
+                                    key={event.id} 
+                                    className="p-4 bg-white rounded-xl shadow-lg border border-gray-200 flex items-center justify-between transition duration-150"
+                                >
+                                    {/* Left Side: Matchup and Odds */}
+                                    <div className="flex-1 min-w-0 pr-3">
+                                        {/* Matchup Line */}
+                                        <div className="flex items-center text-sm font-bold text-gray-900 truncate">
+                                            <span className={isAwayWinner ? 'text-indigo-700' : 'text-gray-800'}>{event.awayTeam}</span>
+                                            <span className="mx-1 font-normal text-gray-500">at</span>
+                                            <span className={isHomeWinner ? 'text-indigo-700' : 'text-gray-800'}>{event.homeTeam}</span>
+                                        </div>
+                                        
+                                        {/* Winner and Odds */}
+                                        <div className="text-xs mt-1 text-gray-600">
+                                            <span className="font-semibold">Winner:</span> 
+                                            <span className={`ml-1 font-bold ${isAwayWinner || isHomeWinner ? 'text-indigo-600' : 'text-gray-500'}`}>
+                                                {event.expectedWinner}
+                                            </span>
+                                            <span className="ml-2">({event.awayOdds} | {event.homeOdds})</span>
+                                        </div>
+                                    </div>
+
+                                    {/* Right Side: Rank Badge */}
+                                    <div className="flex-shrink-0">
+                                        <div className={`w-12 h-12 flex items-center justify-center rounded-full font-extrabold text-lg ${rankClasses}`}>
+                                            {event.confidenceRank}
+                                        </div>
+                                        <div className="text-xs text-center text-gray-500 mt-1">Rank</div>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </>
               ) : (
                 <p className="text-gray-500 text-center py-8">No events were loaded or found with sufficient odds data to rank for the selected period.</p>
               )}
@@ -877,8 +930,7 @@ const App = () => {
           </div>
         );
       };
-      // --- End Modal Component ---
-    
+      // --- End Modal Component ---    
     // ... (rest of App is the same) ...
 
     // Loading for the main schedule fetcher
