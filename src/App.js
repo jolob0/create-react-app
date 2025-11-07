@@ -1082,7 +1082,7 @@ const App = () => {
                                         <div className="grid grid-cols-2 gap-3 text-sm">
                                             
                                             {/* Away Team Block */}
-                                            <div className={`p-3 rounded-xl flex flex-col space-y-1 shadow-inner transition duration-150 relative ${awayClasses}`}>
+                                            <div className={`p-3 rounded-xl flex flex-col shadow-inner transition duration-150 relative ${awayClasses}`}>
                                                 
                                                 {/* Team Status (Stays at top) */}
                                                 <span className="font-semibold uppercase tracking-wider text-xs text-gray-600">
@@ -1141,7 +1141,7 @@ const App = () => {
                                             </div>
                                             
                                             {/* Home Team Block */}
-                                            <div className={`p-3 rounded-xl flex flex-col space-y-1 shadow-inner transition duration-150 relative ${homeClasses}`}>
+                                            <div className={`p-3 rounded-xl flex flex-col shadow-inner transition duration-150 relative ${homeClasses}`}>
                                                 
                                                 {/* Team Status (Stays at top) */}
                                                 <span className="font-semibold uppercase tracking-wider text-xs text-gray-600">
