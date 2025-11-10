@@ -11,7 +11,7 @@ const API_URL = 'https://site.api.espn.com/apis/site/v2/sports/football/nfl/scor
 const transformEvents = (data) => {
   if (!data || !data.events) return [];
   
-  const currentWeek = events.week.number;
+  const currentWeek = data.events.week.number;
   
   return data.events.map(event => {
     const competition = event.competitions?.[0];
