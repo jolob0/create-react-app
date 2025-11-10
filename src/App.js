@@ -1000,7 +1000,7 @@ const App = () => {
                 </header>
                 
                 {/* Selection Controls */}
-                <div className="mb-6 p-4 bg-white rounded-xl shadow-lg flex flex-col sm:flex-col gap-2 justify-center items-center">
+                <div className="mb-6 p-4 bg-white rounded-xl shadow-lg flex flex-row sm:flex-row gap-2 justify-center items-center">
                     <div className="flex items-center space-x-1">
                         <label htmlFor="year-select" className="font-medium text-gray-700">Year:</label>
                         <select
