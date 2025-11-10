@@ -138,7 +138,8 @@ const App = () => {
     const rankingUrl = useMemo(() => 
         (year && week)
             ? `https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/${year}/types/2/weeks/${week}/events`
-            : API_URL, // API_URL is the simple /site/v2/scoreboard (for live ranking)
+            : `https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/${year}/types/2/weeks/${currentWeek}/events`,
+            /*: API_URL, // API_URL is the simple /site/v2/scoreboard (for live ranking)*/
     [year, week]);
 
 
