@@ -1000,8 +1000,8 @@ const App = () => {
                 </header>
                 
                 {/* Selection Controls */}
-                <div className="mb-6 p-4 bg-white rounded-xl shadow-lg flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <div className="flex items-center space-x-2">
+                <div className="mb-6 p-4 bg-white rounded-xl shadow-lg flex flex-col sm:flex-row gap-2 justify-center items-center">
+                    <div className="flex items-center space-x-1">
                         <label htmlFor="year-select" className="font-medium text-gray-700">Year:</label>
                         <select
                             id="year-select"
@@ -1017,7 +1017,7 @@ const App = () => {
                         </select>
                     </div>
 
-                    <div className="flex items-center space-x-2">
+                    <div className="flex items-center space-x-1">
                         <label htmlFor="week-select" className="font-medium text-gray-700">Week:</label>
                         <select
                             id="week-select"
