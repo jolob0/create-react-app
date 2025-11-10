@@ -783,11 +783,10 @@ const App = () => {
         if (!modalOpen) return null;
 
         const maxRank = events.length;
-        const currentWeek = events.week.number;
-
+        
         const modalTitle = year && week ? 
             `Picks for ${year} Week ${week}` : 
-            `Picks for This Week ${currentWeek}`;
+            `Picks for This Week`;
 
         return (
           <div 
