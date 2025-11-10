@@ -1018,14 +1018,14 @@ const App = () => {
                     </div>
 
                     <div className="flex items-center space-x-2">
-                        <label htmlFor="week-select" className="font-medium text-gray-700">Week (1-18):</label>
+                        <label htmlFor="week-select" className="font-medium text-gray-700">Week:</label>
                         <select
                             id="week-select"
                             value={week === null ? '' : week}
                             onChange={(e) => setWeek(Number(e.target.value))}
                             className="p-2 border border-gray-300 text-gray-700 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                         >
-                            <option value="" disabled>Select Week</option>
+                            <option value="" disabled>Week</option>
                             {/* Generates options for Week 1 through 18 */}
                             {Array.from({ length: 18 }, (_, i) => i + 1).map(w => (
                                 <option key={w} value={w}>Week {w}</option>
