@@ -5,7 +5,7 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Trophy, Cpu } from 'lucide-react';
 
 // The base URL for the ESPN API endpoint (used by the ranking/modal feature for LIVE data)
-/*const API_URL = 'https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard';*/
+const API_URL = 'https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard';
 
 // --- Step 1: Data Transformation and Winner Determination ---
 const transformEvents = (data) => {
@@ -14,8 +14,6 @@ const transformEvents = (data) => {
   return data.events.map(event => {
     const competition = event.competitions?.[0];
     const competitors = competition?.competitors;
-
-    
     // Assuming the primary odds object is the first item in the odds array
     const oddsData = competition?.odds?.[0]; 
 
@@ -120,10 +118,6 @@ const App = () => {
     // Define targetYear in App scope
     const targetYear = year !== null ? year : currentYear;
 
-    const currentWeek = events.week.number; 
-
-    /*const API_URL = `https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/${year}/types/2/weeks/${currentWeek}/events`*/
-
     // Constant for the fast initial load API (Scoreboard)
     const SCOREBOARD_URL = 'https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events';
 
@@ -138,9 +132,8 @@ const App = () => {
     const rankingUrl = useMemo(() => 
         (year && week)
             ? `https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/${year}/types/2/weeks/${week}/events`
-            : `https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/${year}/types/2/weeks/${currentWeek}/events`,
-            /*: API_URL, // API_URL is the simple /site/v2/scoreboard (for live ranking)*/
-    [year, week, currentWeek]);
+            : API_URL, // API_URL is the simple /site/v2/scoreboard (for live ranking)
+    [year, week]);
 
 
     /**
@@ -1025,14 +1018,14 @@ const App = () => {
                     </div>
 
                     <div className="flex items-center space-x-2">
-                        <label htmlFor="week-select" className="font-medium text-gray-700">Week:</label>
+                        <label htmlFor="week-select" className="font-medium text-gray-700">Week (1-18):</label>
                         <select
                             id="week-select"
                             value={week === null ? '' : week}
                             onChange={(e) => setWeek(Number(e.target.value))}
                             className="p-2 border border-gray-300 text-gray-700 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                         >
-                            <option value="" disabled>Week</option>
+                            <option value="" disabled>Select Week</option>
                             {/* Generates options for Week 1 through 18 */}
                             {Array.from({ length: 18 }, (_, i) => i + 1).map(w => (
                                 <option key={w} value={w}>Week {w}</option>
