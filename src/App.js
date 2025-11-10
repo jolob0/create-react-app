@@ -10,7 +10,9 @@ const API_URL = 'https://site.api.espn.com/apis/site/v2/sports/football/nfl/scor
 // --- Step 1: Data Transformation and Winner Determination ---
 const transformEvents = (data) => {
   if (!data || !data.events) return [];
-
+  
+  const currentWeek = events.week.number;
+  
   return data.events.map(event => {
     const competition = event.competitions?.[0];
     const competitors = competition?.competitors;
@@ -65,6 +67,7 @@ const transformEvents = (data) => {
       homeTeam: homeTeamAbbr,
       awayOdds: awayOddsStr,
       homeOdds: homeOddsStr,
+      currentWeek: currentWeek,
       expectedWinner: expectedWinner,
       winnerLine: winnerLine, // Use this numeric value for ranking
       status: event.status.type.detail,
@@ -786,7 +789,7 @@ const App = () => {
 
         const modalTitle = year && week ? 
             `Picks for ${year} Week ${week}` : 
-            "Picks for This Week";
+            'Picks for This Week ${currentWeek}';
 
         return (
           <div 
