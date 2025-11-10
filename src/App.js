@@ -140,7 +140,7 @@ const App = () => {
             ? `https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/${year}/types/2/weeks/${week}/events`
             : `https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/${year}/types/2/weeks/${currentWeek}/events`,
             /*: API_URL, // API_URL is the simple /site/v2/scoreboard (for live ranking)*/
-    [year, week]);
+    [year, week, currentWeek]);
 
 
     /**
