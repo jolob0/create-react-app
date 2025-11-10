@@ -70,7 +70,6 @@ const transformEvents = (data) => {
       expectedWinner: expectedWinner,
       winnerLine: winnerLine, // Use this numeric value for ranking
       status: event.status.type.detail,
-      currentWeek: currentWeek,
       confidenceRank: null, // Placeholder for ranking
     };
   }).filter(item => item !== null); // Filter out any events that failed to parse
