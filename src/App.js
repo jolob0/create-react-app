@@ -122,7 +122,7 @@ const App = () => {
 
     const currentWeek = events.week.number; 
 
-    const API_URL = `https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/${year}/types/2/weeks/${currentWeek}/events`
+    /*const API_URL = `https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/${year}/types/2/weeks/${currentWeek}/events`*/
 
     // Constant for the fast initial load API (Scoreboard)
     const SCOREBOARD_URL = 'https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events';
