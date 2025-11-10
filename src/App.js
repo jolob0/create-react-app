@@ -15,7 +15,7 @@ const transformEvents = (data) => {
     const competition = event.competitions?.[0];
     const competitors = competition?.competitors;
 
-    const currentWeek = week?.number; 
+    const currentWeek = week.number; 
     // Assuming the primary odds object is the first item in the odds array
     const oddsData = competition?.odds?.[0]; 
 
