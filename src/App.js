@@ -971,7 +971,7 @@ const App = () => {
     // Determine the title based on which data set is loaded
     let headerTitle;
     if (requestedUrl === SCOREBOARD_URL) {
-        headerTitle = `Live/Recent NFL Scoreboard`;
+        headerTitle = `Live/Recent NFL Scoreboard (Year used for records: ${targetYear})`;
     } else {
         headerTitle = `NFL ${year} Season, Week ${week} Games`;
     }
@@ -1048,7 +1048,7 @@ const App = () => {
                 
                 {/* Game List (Original Display) */}
                 <div className="bg-white p-6 rounded-xl shadow-lg">
-                    <h2 className="text-xl font-bold text-indigo-700 mb-4 border-b pb-2">{games.length} Games</h2>
+                    <h2 className="text-xl font-bold text-indigo-700 mb-4 border-b pb-2">Extracted Games ({games.length} Events)</h2>
                     
                     {games.length === 0 && !loading && (
                         <div className="text-center p-8 bg-indigo-50 rounded-lg border border-indigo-200">
@@ -1077,7 +1077,7 @@ const App = () => {
                                         className="p-4 bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition duration-150 ease-in-out"
                                     >
                                         <div className="text-sm font-semibold text-gray-700 mb-3 border-b pb-2">
-                                            {game.name}
+                                            Game {index + 1}: {game.name}
                                         </div>
                                         <div className="grid grid-cols-2 gap-3 text-sm">
                                             
