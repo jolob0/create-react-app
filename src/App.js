@@ -5,7 +5,7 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Trophy, Cpu } from 'lucide-react';
 
 // The base URL for the ESPN API endpoint (used by the ranking/modal feature for LIVE data)
-const API_URL = 'https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard';
+/*const API_URL = 'https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard';*/
 
 // --- Step 1: Data Transformation and Winner Determination ---
 const transformEvents = (data) => {
