@@ -1000,7 +1000,7 @@ const App = () => {
                 </header>
                 
                 {/* Selection Controls */}
-                <div className="mb-6 p-4 bg-white rounded-xl shadow-lg flex flex-col sm:flex-row gap-2 justify-center items-center">
+                <div className="mb-6 p-4 bg-white rounded-xl shadow-lg flex flex-col sm:flex-col gap-2 justify-center items-center">
                     <div className="flex items-center space-x-1">
                         <label htmlFor="year-select" className="font-medium text-gray-700">Year:</label>
                         <select
@@ -1037,7 +1037,7 @@ const App = () => {
                         onClick={handleFetchClick}
                         disabled={week === null || loading}
                         className={`
-                            p-2.5 rounded-lg font-bold text-white transition duration-200 shadow-lg
+                            p-2 rounded-lg font-bold text-white transition duration-200 shadow-lg
                             ${week !== null && !loading
                                 ? 'bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50'
                                 : 'bg-gray-400 cursor-not-allowed'
