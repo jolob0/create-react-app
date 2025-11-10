@@ -1044,7 +1044,7 @@ const App = () => {
                             }
                         `}
                     >
-                        Fetch Specific Week
+                        Get
                     </button>
                 </div>
                 
