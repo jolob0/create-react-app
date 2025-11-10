@@ -122,6 +122,8 @@ const App = () => {
 
     const currentWeek = events.week.number; 
 
+    const API_URL = `https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/${year}/types/2/weeks/${currentWeek}/events`
+
     // Constant for the fast initial load API (Scoreboard)
     const SCOREBOARD_URL = 'https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events';
 
@@ -136,9 +138,7 @@ const App = () => {
     const rankingUrl = useMemo(() => 
         (year && week)
             ? `https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/${year}/types/2/weeks/${week}/events`
-            : `https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/${year}/types/2/weeks/${currentWeek}/events`
-      
-            /*: API_URL, // API_URL is the simple /site/v2/scoreboard (for live ranking)*/
+            : API_URL, // API_URL is the simple /site/v2/scoreboard (for live ranking)
     [year, week]);
 
 
