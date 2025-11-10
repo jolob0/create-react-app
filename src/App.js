@@ -973,7 +973,7 @@ const App = () => {
     // Determine the title based on which data set is loaded
     let headerTitle;
     if (requestedUrl === SCOREBOARD_URL) {
-        headerTitle = `Live/Recent NFL Scoreboard (Year used for records: ${targetYear})`;
+        headerTitle = `Live/Recent NFL Scoreboard`;
     } else {
         headerTitle = `NFL ${year} Season, Week ${week} Games`;
     }
