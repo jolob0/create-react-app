@@ -15,7 +15,7 @@ const transformEvents = (data) => {
     const competition = event.competitions?.[0];
     const competitors = competition?.competitors;
 
-    const currentWeek = event.week.number; 
+    
     // Assuming the primary odds object is the first item in the odds array
     const oddsData = competition?.odds?.[0]; 
 
@@ -120,6 +120,8 @@ const App = () => {
     
     // Define targetYear in App scope
     const targetYear = year !== null ? year : currentYear;
+
+    const currentWeek = event.week.number; 
 
     // Constant for the fast initial load API (Scoreboard)
     const SCOREBOARD_URL = 'https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events';
