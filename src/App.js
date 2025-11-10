@@ -330,6 +330,7 @@ const App = () => {
         });
 
         return extractedGames;
+    // eslint-disable-next-line
     }, [targetYear]);
 
     /**
@@ -568,6 +569,7 @@ const App = () => {
                 
             } catch (err) {
                 if (err.message.includes("HTTP Error") && i < retries - 1) {
+                    // eslint-disable-next-line
                     await new Promise(resolve => setTimeout(resolve, delay));
                     delay *= 2; 
                 } else {
