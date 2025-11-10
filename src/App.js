@@ -121,7 +121,7 @@ const App = () => {
     // Define targetYear in App scope
     const targetYear = year !== null ? year : currentYear;
 
-    const currentWeek = event.week.number; 
+    const currentWeek = events.week.number; 
 
     // Constant for the fast initial load API (Scoreboard)
     const SCOREBOARD_URL = 'https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events';
