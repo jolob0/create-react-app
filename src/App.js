@@ -789,7 +789,7 @@ const App = () => {
 
         const modalTitle = year && week ? 
             `Picks for ${year} Week ${week}` : 
-            'Picks for This Week ${currentWeek}';
+            `Picks for This Week ${currentWeek}`;
 
         return (
           <div 
