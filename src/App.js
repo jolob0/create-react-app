@@ -14,6 +14,8 @@ const transformEvents = (data) => {
   return data.events.map(event => {
     const competition = event.competitions?.[0];
     const competitors = competition?.competitors;
+
+    const currentWeek = week?.number; 
     // Assuming the primary odds object is the first item in the odds array
     const oddsData = competition?.odds?.[0]; 
 
@@ -68,6 +70,7 @@ const transformEvents = (data) => {
       expectedWinner: expectedWinner,
       winnerLine: winnerLine, // Use this numeric value for ranking
       status: event.status.type.detail,
+      currentWeek: currentWeek,
       confidenceRank: null, // Placeholder for ranking
     };
   }).filter(item => item !== null); // Filter out any events that failed to parse
@@ -132,7 +135,9 @@ const App = () => {
     const rankingUrl = useMemo(() => 
         (year && week)
             ? `https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/${year}/types/2/weeks/${week}/events`
-            : API_URL, // API_URL is the simple /site/v2/scoreboard (for live ranking)
+            : `https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/${year}/types/2/weeks/${currentWeek}/events`
+      
+            /*: API_URL, // API_URL is the simple /site/v2/scoreboard (for live ranking)*/
     [year, week]);
 
 
@@ -1018,14 +1023,14 @@ const App = () => {
                     </div>
 
                     <div className="flex items-center space-x-2">
-                        <label htmlFor="week-select" className="font-medium text-gray-700">Week (1-18):</label>
+                        <label htmlFor="week-select" className="font-medium text-gray-700">Week:</label>
                         <select
                             id="week-select"
                             value={week === null ? '' : week}
                             onChange={(e) => setWeek(Number(e.target.value))}
                             className="p-2 border border-gray-300 text-gray-700 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                         >
-                            <option value="" disabled>Select Week</option>
+                            <option value="" disabled>Week</option>
                             {/* Generates options for Week 1 through 18 */}
                             {Array.from({ length: 18 }, (_, i) => i + 1).map(w => (
                                 <option key={w} value={w}>Week {w}</option>
