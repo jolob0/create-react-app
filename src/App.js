@@ -995,7 +995,7 @@ const App = () => {
             {/* Main Schedule Fetcher UI Content */}
             <div className="max-w-3xl mx-auto w-full bg-gray-50 min-h-screen">
                 <header className="text-center py-6 mb-6 bg-white rounded-xl shadow-lg">
-                    <h1 className="text-3xl font-extrabold text-gray-900">NFL Game Schedule Fetcher</h1>
+                    <h1 className="text-3xl font-extrabold text-gray-900">NFL Game Fetcher</h1>
                     <p className="text-gray-500 mt-1 font-medium">{headerTitle}</p>
                 </header>
                 
