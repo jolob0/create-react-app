@@ -1119,14 +1119,10 @@ const App = () => {
                                                     </span>
                                                 </div>
                                                 
-                                                {/* Record on Desktop Only */}
-                                                <span className="hidden sm:block text-xs font-medium text-gray-700 mt-0.5">
-                                                    {game.awayRecord}
-                                                </span>
 
                                                 
                                                 {/* NEW ODDS BOX (Bottom position - Visible on Mobile, Hidden on Desktop) */}
-                                                <div className="sm:hidden flex absolute top-0 right-0 p-1 bg-indigo-600 text-white text-xs font-bold rounded-lg shadow-md items-center space-x-1">
+                                                <div className="sm:hidden flex absolute bottom-0 right-0 p-1 bg-indigo-600 text-white text-xs font-bold rounded-lg shadow-md items-center space-x-1">
                                                     <span className="uppercase font-extrabold px-1 bg-white text-indigo-600 rounded-sm">AWAY</span>
                                                     <span className="opacity-80">ML:</span> 
                                                     <span>{game.awayOdds || 'N/A'}</span>
@@ -1138,6 +1134,12 @@ const App = () => {
                                                     <span className="opacity-80">ML:</span> 
                                                     <span>{game.awayOdds || 'N/A'}</span>
                                                 </div>
+
+                                                {/* Record on Desktop Only */}
+                                                <span className="hidden sm:block text-xs font-medium text-gray-700 mt-0.5">
+                                                    {game.awayRecord}
+                                                </span>
+
                                             </div>
                                             
                                             {/* Home Team Block */}
