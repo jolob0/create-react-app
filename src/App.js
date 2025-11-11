@@ -1081,7 +1081,7 @@ const App = () => {
                                         <div className="text-sm font-semibold text-gray-700 mb-3 border-b pb-2">
                                             {game.name}
                                         </div>
-                                        <div className="grid grid-cols-2 gap-3 text-sm sm:max-h-1">
+                                        <div className="grid grid-cols-2 gap-3 text-sm sm:max-h-[100px]">
                                             
                                             {/* Away Team Block */}
                                             <div className={`p-3 rounded-xl flex flex-col shadow-inner transition duration-150 relative ${awayClasses}`}>
