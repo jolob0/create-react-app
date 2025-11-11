@@ -1176,10 +1176,7 @@ const App = () => {
                                                     </span>
                                                 </div>
 
-                                                {/* Record on Desktop Only */}
-                                                <span className="hidden sm:block text-xs font-medium text-gray-700 mt-0.5">
-                                                    {game.homeRecord}
-                                                </span>
+                                                
 
 
                                                 {/* NEW ODDS BOX (Bottom position - Visible on Mobile, Hidden on Desktop) */}
@@ -1197,6 +1194,13 @@ const App = () => {
                                                     <span className="opacity-80">ML:</span> 
                                                     <span>{game.homeOdds || 'N/A'}</span>
                                                 </div>
+
+                                                {/* Record on Desktop Only */}
+                                                <span className="hidden sm:block text-xs font-medium text-gray-700 mt-0.5">
+                                                    {game.homeRecord}
+                                                </span>
+
+                                                
                                             </div>
                                         </div>
                                         
