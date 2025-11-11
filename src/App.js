@@ -1107,7 +1107,7 @@ const App = () => {
                                                             {/* Full Name on Desktop, Hidden on Mobile */}
                                                             <span className="hidden sm:inline text-lg font-bold">{game.awayTeam}</span>
                                                             {/* Inline content for mobile: Name (Abr) + Record + Score */}
-                                                            <span className="inline sm:hidden text-[8px] text-gray-700">
+                                                            <span className="inline sm:hidden text-[8px] font-bold text-gray-700">
                                                                 ({game.awayRecord})
                                                             </span>
                                                         </div>
@@ -1166,7 +1166,7 @@ const App = () => {
                                                             {/* Full Name on Desktop, Hidden on Mobile */}
                                                             <span className="hidden sm:inline text-lg font-bold">{game.homeTeam}</span>
                                                             {/* Inline content for mobile: Name (Abr) + Record + Score */}
-                                                            <span className="inline sm:hidden text-xs font-bold text-gray-700">
+                                                            <span className="inline sm:hidden text-[8px] font-bold text-gray-700">
                                                                 ({game.homeRecord})
                                                             </span>
                                                         </div>
