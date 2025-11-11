@@ -2,7 +2,7 @@
 import './App.css';
 
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { Trophy, Cpu } from 'lucide-react';
+import { Trophy, Cpu, Pickaxe } from 'lucide-react';
 
 // The base URL for the ESPN API endpoint (used by the ranking/modal feature for LIVE data)
 const API_URL = 'https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard';
@@ -1263,7 +1263,7 @@ const App = () => {
                   </svg>
                 ) : (
                   // Icon
-                  <Cpu className="w-7 h-7 text-white" />
+                  <Pickaxe className="w-7 h-7 text-white" />
                 )}
               </button>
             
